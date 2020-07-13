@@ -37,7 +37,7 @@ class AbstractConverter(ABC):
         """
         if not text:
             return []
-        words = re.split(r'[A-Za-z][ ]+|[ ]+[A-Za-z]|[ ]{2}[ ]?', text)
+        words = re.split(r'[A-Za-z][ ]+|[ ]+[A-Za-z]|[ ]{2}[ ]*', text)
         return [w.strip() for w in words if self._is_num(w)]
 
     def convert(self, nums: List[str]) -> List[str]:
