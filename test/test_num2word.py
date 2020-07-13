@@ -1,0 +1,70 @@
+from n2w.num2word import *
+
+def test_text_parsing():
+    assert Num2Word('The pump is 536 deep underground.').result() == 'five hundred and thirty-six'
+    assert Num2Word('We processed 9121 records.').result() == 'nine thousand, one hundred and twenty-one'
+    assert Num2Word('Variables reported as having a missing type #65678.').result() == 'number invalid'
+    assert Num2Word('Interactive and printable 10022 ZIP code.').result() == 'ten thousand and twenty-two'
+    assert Num2Word('The database has 66723107008 records.').result() == 'sixty-six billion, seven hundred and twenty-three million, one hundred and seven thousand and eight'
+    # assert Num2Word('I received 23 456,9 KGs.').result() == 'number invalid'
+
+def test_invalid_input():
+    assert Num2Word(None).result() == 'number invalid'
+    assert Num2Word('None').result() == 'number invalid'
+    assert Num2Word('').result() == 'number invalid'
+    assert Num2Word('01').result() == 'number invalid'
+    assert Num2Word('+1').result() == 'number invalid'
+    assert Num2Word('1-').result() == 'number invalid'
+    # assert Num2Word('1,').result() == 'number invalid'
+    # assert Num2Word('1,00').result() == 'number invalid'
+
+def test_should_match_double_single_numbers():
+    assert Num2Word('0').result() == 'zero'
+    assert Num2Word('1').result() == 'one'
+    assert Num2Word('2').result() == 'two'
+    assert Num2Word('3').result() == 'three'
+    assert Num2Word('4').result() == 'four'
+    assert Num2Word('5').result() == 'five'
+    assert Num2Word('6').result() == 'six'
+    assert Num2Word('7').result() == 'seven'
+    assert Num2Word('8').result() == 'eight'
+    assert Num2Word('9').result() == 'nine'
+
+def test_should_match_double_digit_numbers():
+    assert Num2Word('10').result() == 'ten'
+    assert Num2Word('11').result() == 'eleven'
+    assert Num2Word('12').result() == 'twelve'
+    assert Num2Word('13').result() == 'thirteen'
+    assert Num2Word('14').result() == 'forteen'
+    assert Num2Word('15').result() == 'fifteen'
+    assert Num2Word('16').result() == 'sixteen'
+    assert Num2Word('17').result() == 'seventeen'
+    assert Num2Word('18').result() == 'eighteen'
+    assert Num2Word('19').result() == 'nineteen'
+    assert Num2Word('20').result() == 'twenty'
+    assert Num2Word('21').result() == 'twenty-one'
+    assert Num2Word('31').result() == 'thirty-one'
+    assert Num2Word('41').result() == 'forty-one'
+    assert Num2Word('51').result() == 'fifty-one'
+    assert Num2Word('61').result() == 'sixty-one'
+    assert Num2Word('71').result() == 'seventy-one'
+    assert Num2Word('81').result() == 'eighty-one'
+    assert Num2Word('91').result() == 'ninety-one'
+    assert Num2Word('99').result() == 'ninety-nine'
+
+def test_should_deal_with_zeros_inside():
+    assert Num2Word('100').result() == 'one hundred'
+    assert Num2Word('101').result() == 'one hundred and one'
+    assert Num2Word('1000').result() == 'one thousand'
+    assert Num2Word('1101').result() == 'one thousand, one hundred and one'
+    assert Num2Word('10000').result() == 'ten thousand'
+    assert Num2Word('10000000').result() == 'ten million'
+    assert Num2Word('10000000000').result() == 'ten billion'
+    assert Num2Word('10000000000000').result() == 'ten trillion'
+    assert Num2Word('10000000000001').result() == 'ten trillion and one'
+    assert Num2Word('10000000000100').result() == 'ten trillion and one hundred'
+
+def test_should_use_concatenators_properly():
+    assert Num2Word('111').result() == 'one hundred and eleven'
+    assert Num2Word('1111').result() == 'one thousand, one hundred and eleven'
+    assert Num2Word('1011').result() == 'one thousand and eleven'
