@@ -54,7 +54,7 @@
 ## Instructions to Run
 #### Project
 1. Install this package by running bin/install.sh
-2. On commmand line, you can run n2w by using below example commands.
+2. In terminal, you can run n2w by using below command examples.
 
 ```
 $ n2w -t 'abc 123'
