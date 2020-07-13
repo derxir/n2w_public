@@ -14,7 +14,7 @@
     - Given target language English, the output is made up of a finite set of number words. Therefore a full enumeration
     of building words should be provided
     
-2. #### Test Setup(BDD cycle)
+2. #### Test Setup(TDD cycle)
     the test should start from passing simple common testcases. for instance 0, 1, 10, in order to make sure the project 
     can always pass the test while deleveoping further on.
     In summary, the testsuite should include
