@@ -8,7 +8,7 @@
 
 ## Design and Implementation
 1. #### Scope(Boundary) of the problem
-    - The input is a string of text. The text can be in any natural language. The source of intput can be read from memory, file, netowrk, etc.
+    - The input is a string of text. The text can be in any natural language. The source of intput can be read from memory, file, network, etc.
     - The output is a string of numbers in words. The words can be in any natural language.
     - A valid number can be int, float, scientific notion, etc. In this version, int is supported.
     - Given target language English, the output is made up of a finite set of number words. Therefore a full enumeration
